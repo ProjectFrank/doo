@@ -9,7 +9,7 @@ A library and Leiningen plugin to run `cljs.test` in many JS environments.
 
 This README is for the latest stable release:
 
-`[lein-doo "0.1.7"]`
+`[org.clojars.projectfrank/lein-doo "0.1.8-SNAPSHOT"]`
 
 To use doo you need to use `[org.clojure/clojurescript "0.0-3308"]` or
 newer.
@@ -29,9 +29,10 @@ in `project.clj`:
 
     lein doo {js-env} {build-id} {watch-mode}
 
-* `js-env` can be any `chrome`, `firefox`, `ie`, `safari`, `opera`,
+* `js-env` can be any `chrome`, 'chrome-headless`, `firefox`, `ie`, `safari`, `opera`,
 `slimer`, `phantom`, `node`, `rhino`, or `nashorn`. In the future it
 is planned to support `v8`, `jscore`, and others.
+  * Note that `chrome-headless` requires `karma-chrome-launcher` >= 2.0.0 and Chrome >= 59
 * `watch-mode` (optional): either `auto` (default) or `once` which
   exits with 0 if the tests were successful and 1 if they failed.
 * `build-id` is one of your `cljsbuild` profiles. For example `test` from:
