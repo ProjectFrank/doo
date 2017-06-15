@@ -238,8 +238,14 @@ in project.clj.\n")
                       (apply doo.core/print-envs karma-envs#)
                       (doo.core/karma-run! ~opts))))))
             (do
-              (cljs.build.api/build
-                (apply cljs.build.api/inputs ~(vec source-paths)) compiler#)
+              (when-not (-> compiler#
+                            :output-to
+                            (str/split #"/")
+                            rest
+                            (->> (str/join "/"))
+                            io/resource)
+                (cljs.build.api/build
+                 (apply cljs.build.api/inputs ~(vec source-paths)) compiler#))
               (let [ok# (->> ~js-envs
                           (map (fn [e#]
                                  (doo.core/print-envs e#)
